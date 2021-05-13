@@ -1,4 +1,5 @@
 body {
   min-height: 100vh;
-  background: linear-gradient(180deg, #F5DB13 0%, #F2B807 100%);
+  background-color: #ffee00;
+  background: linear-gradient(180deg, #f5db13 0%, #f2b807 100%);
 }
