@@ -1,50 +1,44 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-type TypeFn = () => void;
-interface IInterface {
-  [n: string]: string | number;
+// Работа с простыми типами
+type TypeFn = (a: string, b: string) => string;
+
+export const ArrowFn: TypeFn = () => 'sdfsdf';
+
+export const concat: TypeFn = (a, b) => {
+  return a + b;
+};
+
+// eslint-disable-next-line no-console
+console.log(concat('Hello ', 'World'));
+
+// Работа с интерфейсами
+interface TaskInterface {
+  [n: string]: string | (string | number | TaskInterface)[];
 }
+
+const myHometask: TaskInterface = {
+  howIDoIt: 'I Do It Wel',
+  simeArray: ['string one', 'string two', 42],
+  withData: [{ howIDoIt: 'I Do It Wel', simeArray: ['string one', 23] }],
+};
 
 function identity<T>(value: T): T {
   return value;
 }
 
-interface MyArray<T> extends Array<any> {
+// Типизация функций, используя Generic
+interface MyArray<T> {
   [n: number]: T;
-
-  // map<U>(fn:(el: T) => U): U[];
+  reduce(fn: (start: T, value: T, index: number, array: T[]) => T): T;
+  reduce(fn: (start: T, value: T, index: number, array: T[]) => T, init: T): T;
 }
 
 const tsArr: MyArray<number> = [1, 2, 3, 4];
 
-tsArr.map((i) => i + 1);
-tsArr.map((i) => `${i} + 1`);
-
-function getLen<T extends Array<any>>(arr: T): number {
-  return arr.length;
-}
-
-identity(1);
-identity('1');
-const f = () => {
-  let tsString = +'1';
-  tsString = 1;
-  tsString = +`${tsString}d`;
-  const arr: [string, number] = ['1', 2];
-
-  const [_a, _b] = arr;
-
-  const data: IInterface = {
-    key1: 'key',
-    key2: 3,
-  };
-
-  const val3 = data.key3;
-
-  return `${val3} + ${tsString}`;
-};
-
 // eslint-disable-next-line no-console
-export const ArrowFn: TypeFn = () => console.log('sdfsdf');
-
-export default f;
+console.log(
+  tsArr.reduce((i) => i + 1),
+  tsArr.reduce((i, a) => i + a),
+  tsArr.reduce((a, b) => a + b, 10),
+);
