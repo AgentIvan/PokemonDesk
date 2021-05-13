@@ -11,6 +11,7 @@
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
+    "@types/node": "^15.0.3",
     "@types/react": "^17.0.5",
     "@types/react-dom": "^17.0.5",
     "@typescript-eslint/eslint-plugin": "4.6.0",
@@ -47,7 +48,8 @@
   "scripts": {
     "build:dev": "cross-env NODE_ENV=development webpack --config webpack.config.js",
     "build:prod": "cross-env NODE_ENV=production webpack --config webpack.config.js",
-    "start": "cross-env NODE_ENV=development webpack-dev-server"
+    "start": "cross-env NODE_ENV=development webpack-dev-server",
+    "lint": "npx eslint \"src/**/*.@(tsx|ts|jsx|js)\" --fix ; npx prettier --check \"src/**/*.@(tsx|ts|jsx|js)\" --write"
   },
   "husky": {
     "hooks": {
