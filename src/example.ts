@@ -39,16 +39,19 @@ const anotherHomeTask: AnotherTaskIntetface = {
 // ? 3. Типизация функций, используя Generic
 interface MyArray<T> {
   [n: number]: T;
-  // reduce(fn: (start: T, value: T, index: number, array: T[]) => T): T;
-  reduce(fn: (start: T, value: T, index: number, array: T[]) => T, init?: T): T;
+  reduce(fn: (start: T, value: T, index: number, array: T[]) => T): T;
+  reduce<U>(fn: (start: U, value: T, index: number, array: T[]) => U, init: U): T;
 }
 
 const tsArr: MyArray<number> = [1, 2, 3, 4];
 
 // eslint-disable-next-line no-console
 console.log(
-  tsArr.reduce((a, b) => a + b),
-  tsArr.reduce((a, b) => a + b, 10),
+  tsArr.reduce((a, b) => a + b * 2),
+  tsArr.reduce((a, b) => a + b * 2, 10),
+  tsArr.reduce((a, b) => a + b * 2, '10'),
+  tsArr.reduce((a, b) => [...a, b * 2], [0]),
+  tsArr.reduce((a, b) => a.concat(b * 2), [0]),
 );
 
 const strArr: MyArray<string> = ['1', '2', '3', '4'];
@@ -56,5 +59,8 @@ const strArr: MyArray<string> = ['1', '2', '3', '4'];
 // eslint-disable-next-line no-console
 console.log(
   strArr.reduce((a, b) => a + b),
+  strArr.reduce((a, b) => a + +b, 10),
   strArr.reduce((a, b) => a + b, '10'),
+  strArr.reduce((a, b) => [...a, b], ['0']),
+  strArr.reduce((a, b) => a.concat(b), ['0']),
 );
