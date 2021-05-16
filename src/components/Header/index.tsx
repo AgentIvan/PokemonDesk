@@ -1,6 +1,6 @@
 import React from 'react';
 
-import s from './Header.module.scss';
+import s from './style.module.scss';
 
 import { ReactComponent as PokemonLogoSvg } from './assets/Logo.svg';
 
