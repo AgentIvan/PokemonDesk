@@ -12,6 +12,9 @@
 
 .contentText > h1 {
   font-weight: 400;
+  p {
+    font-size: $h3-font-size;
+  }
 }
 
 .contentParalax {

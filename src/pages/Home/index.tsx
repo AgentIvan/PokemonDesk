@@ -16,7 +16,9 @@ const HomePage = () => {
             <b>Find</b> all your favorite <b>Pokemon</b>
           </h1>
           <p>You can know the type of Pokemon, its strengths, disadvantages and abilities</p>
-          <Button onClick={() => {}}>See pokemons</Button>
+          <Button onClick={() => {}} color="yellow" fullWidth size="small">
+            See pokemons
+          </Button>
         </div>
         <div className={s.contentParalax}>
           <Parallax />
