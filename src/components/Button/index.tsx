@@ -3,8 +3,8 @@ import cn from 'classnames';
 
 import s from './style.module.scss';
 
-interface IProps {
-  children: React.ReactNode;
+interface IProps extends React.HTMLAttributes<HTMLButtonElement> {
+  // children: React.ReactNode;
   onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   color: 'yellow' | 'green';
   fullWidth: boolean;
@@ -12,8 +12,6 @@ interface IProps {
 }
 
 const Button: React.FC<IProps> = ({ children, onClick, color = 'green', size = 'base', fullWidth = false }: IProps) => {
-  // eslint-disable-next-line no-console
-  console.log(color, color === 'yellow', size, fullWidth);
   return (
     <button
       type="button"

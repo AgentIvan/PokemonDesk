@@ -2,9 +2,9 @@ import React from 'react';
 
 type HeaderType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 type HeaderNum = 1 | 2 | 3 | 4 | 5 | 6;
-interface IProps {
+interface IProps extends React.HTMLAttributes<HTMLHeadingElement> {
   type: HeaderType | HeaderNum;
-  children: React.ReactNode | undefined;
+  // children: React.ReactNode | undefined;
 }
 
 const Heading: React.FC<IProps> = ({ type, children }: IProps) => {
