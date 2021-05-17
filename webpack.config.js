@@ -15,7 +15,7 @@ module.exports = {
     path: resolve(__dirname, 'dist'),
     filename: 'main.js',
   },
-  watch: true,
+  watch: NODE_ENV !== 'production',
   watchOptions: {
     ignored: /node_modules/,
     poll: 1000,
