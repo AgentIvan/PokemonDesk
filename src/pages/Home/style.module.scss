@@ -1,0 +1,22 @@
+@import '../../variables';
+
+.root {
+  min-height: 100vh;
+  background: linear-gradient(180deg, $third 0%, $primary 100%);
+}
+
+.contentWrap {
+  display: flex;
+  margin-top: 128px;
+}
+
+.contentText > h1 {
+  font-weight: 400;
+  p {
+    font-size: $h3-font-size;
+  }
+}
+
+.contentParalax {
+  margin: 0;
+}

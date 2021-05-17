@@ -1,10 +1,10 @@
 import React from 'react';
-import cn from 'classnames';
+import HomePage from './pages/Home';
 
-import s from './App.module.scss';
+// import s from './style.module.scss';
 
 const App: React.FC = () => {
-  return <div className={cn(s.header, 'color')}>Yes, we Did It! This Marathon!</div>;
+  return <HomePage />;
 };
 
 export default App;
