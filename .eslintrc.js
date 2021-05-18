@@ -14,6 +14,8 @@ module.exports = {
   plugins: ['prettier', 'react', '@typescript-eslint', 'react-hooks'],
   rules: {
     'react/require-default-props': 'off',
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': ['error'],
     '@typescript-eslint/no-unused-vars': 'warn',
     'no-console': 'warn',
     'react-hooks/rules-of-hooks': 'error',
