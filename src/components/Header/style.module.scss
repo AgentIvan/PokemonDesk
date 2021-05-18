@@ -63,3 +63,10 @@
     }
   }
 }
+
+.activeLink {
+  &::after {
+    width: 100%;
+    opacity: 1;
+  }
+}

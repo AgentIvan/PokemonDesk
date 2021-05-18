@@ -2,11 +2,15 @@ import React from 'react';
 import Header from '../../components/Header';
 import s from './style.module.scss';
 
-const EmptyPage = () => {
+interface IProps {
+  title?: string;
+}
+
+const EmptyPage: React.FC<IProps> = ({ title }: IProps) => {
   return (
     <div className={s.root}>
       <Header />
-      <div>This is Empty Page!</div>
+      <div>This is Empty Page for {title}!</div>
     </div>
   );
 };
