@@ -4,7 +4,6 @@ import Header from '../../components/Header';
 import Heading from '../../components/Heading ';
 import Layout from '../../components/Layout';
 import Parallax from '../../components/Parallax';
-
 import s from './style.module.scss';
 
 const HomePage = () => {
@@ -13,11 +12,17 @@ const HomePage = () => {
       <Header />
       <Layout className={s.contentWrap}>
         <div className={s.contentText}>
-          <Heading type="h1">
+          <Heading level="h1">
             <b>Find</b> all your favorite <b>Pokemon</b>
           </Heading>
-          <Heading type="h3">You can know the type of Pokemon, its strengths, disadvantages and abilities</Heading>
-          <Button onClick={() => {}} color="yellow" fullWidth size="small">
+          <Heading level="h3">You can know the type of Pokemon, its strengths, disadvantages and abilities</Heading>
+          <Button onClick={() => {}} size="small">
+            See pokemons
+          </Button>
+          <Button onClick={() => {}} color="yellow">
+            See pokemons
+          </Button>
+          <Button onClick={() => {}} size="large">
             See pokemons
           </Button>
         </div>
