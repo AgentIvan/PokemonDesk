@@ -1,6 +1,7 @@
 import { navigate } from 'hookrouter';
 import React from 'react';
 import Button from '../../components/Button';
+import { LinkEnum } from '../../routes';
 import TeamRocket from './assets/TeamRocket.png';
 import s from './style.module.scss';
 
@@ -14,7 +15,7 @@ const NotFoundPage: React.FC = () => {
           <div className={s.subTitle}>
             <span>The Rocket Team</span> has won this time.
           </div>
-          <Button color="yellow" onClick={() => navigate('/')}>
+          <Button color="yellow" onClick={() => navigate(LinkEnum.HOME)}>
             Return
           </Button>
         </div>
