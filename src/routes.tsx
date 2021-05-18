@@ -1,5 +1,5 @@
 import React from 'react';
-import EmptyPage from './pages/EmptyPage';
+import EmptyPage from './pages/Empty';
 import HomePage from './pages/Home';
 
 interface IGeneralMenu {

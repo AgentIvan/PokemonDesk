@@ -1,15 +1,11 @@
-import React from 'react';
-
 import cn from 'classnames';
-
+import React from 'react';
 import s from './style.module.scss';
 
-interface IProps {
-  children: React.ReactNode;
-  className: string | null;
-}
-
-const Layout: React.FC<IProps> = ({ children, className = null }: IProps) => {
+const Layout: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
+  children,
+  className,
+}: React.HTMLAttributes<HTMLDivElement>) => {
   return <div className={cn(s.root, className)}>{children}</div>;
 };
 

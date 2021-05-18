@@ -1,0 +1,55 @@
+@import '../../variables';
+@import '../../beakpoints';
+
+.root {
+  min-height: 100vh;
+  background-color: #d93e30;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wrap {
+  position: absolute;
+  top: 5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.text {
+  font-weight: bold;
+  font-size: calc(min(80vh, 50vw));
+  letter-spacing: 4px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.layer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  img {
+    top: 4vh;
+    width: calc(min(80vh, 50vw));
+    height: calc(min(77vh, 48vw));
+  }
+}
+
+.subTitle {
+  margin-bottom: 3rem;
+  font-weight: bold;
+  font-size: 45px;
+  text-align: center;
+  @include media('<desktop') {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  @include media('<tablet') {
+    font-size: 25px;
+  }
+  span {
+    color: white;
+  }
+}
