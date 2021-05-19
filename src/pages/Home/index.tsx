@@ -2,7 +2,7 @@ import { navigate } from 'hookrouter';
 import React from 'react';
 import Button from '../../components/Button';
 import Header from '../../components/Header';
-import Heading from '../../components/Heading ';
+import Heading from '../../components/Heading';
 import Layout from '../../components/Layout';
 import Parallax from '../../components/Parallax';
 import { LinkEnum } from '../../routes';

@@ -4,3 +4,12 @@
   min-height: 100vh;
   background: linear-gradient(180deg, $third 0%, $primary 100%);
 }
+
+.content {
+  flex-grow: 1;
+  margin: 33px 0;
+
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -34px;
+}

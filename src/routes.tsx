@@ -6,7 +6,7 @@ import PokedexPage from './pages/Pokedex';
 interface IGeneralMenu {
   title: string;
   link: string;
-  component: () => JSX.Element;
+  component: (id?: string) => JSX.Element;
 }
 export enum LinkEnum {
   HOME = '/',
@@ -36,6 +36,11 @@ export const GENERAL_MENU: IGeneralMenu[] = [
     title: 'Documentation',
     link: LinkEnum.DOCUMENTATION,
     component: () => <EmptyPage title="Documentation" />,
+  },
+  {
+    title: 'Pokemon',
+    link: LinkEnum.POKEMON,
+    component: (id) => <PokedexPage id={id} />,
   },
 ];
 
