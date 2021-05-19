@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import React from 'react';
 import EmptyPage from './pages/Empty';
 import HomePage from './pages/Home';
@@ -37,18 +38,19 @@ export const GENERAL_MENU: IGeneralMenu[] = [
     link: LinkEnum.DOCUMENTATION,
     component: () => <EmptyPage title="Documentation" />,
   },
+];
+export const NOT_LISTED: IGeneralMenu[] = [
   {
     title: 'Pokemon',
     link: LinkEnum.POKEMON,
     component: (id) => <PokedexPage id={id} />,
   },
 ];
-
 type IAccMenu = {
   [key: string]: () => JSX.Element;
 };
 
-const routes = GENERAL_MENU.reduce((acc: IAccMenu, item: IGeneralMenu) => {
+const routes = [...GENERAL_MENU, ...NOT_LISTED].reduce((acc: IAccMenu, item: IGeneralMenu) => {
   acc[item.link] = item.component;
   return acc;
 }, {});

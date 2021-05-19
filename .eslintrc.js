@@ -2,7 +2,19 @@ module.exports = {
   env: {
     browser: true,
   },
-  extends: ['airbnb', 'airbnb/hooks', 'react-app', 'prettier', 'prettier/react'],
+  extends: [
+    'airbnb',
+    'airbnb/hooks',
+    'eslint:recommended',
+    'plugin:import/recommended',
+    'plugin:react/recommended',
+    'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:@typescript-eslint/recommended',
+    'react-app',
+    'prettier',
+    'prettier/react',
+    'prettier/@typescript-eslint',
+  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {

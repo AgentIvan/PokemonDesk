@@ -1,6 +1,7 @@
 import { navigate } from 'hookrouter';
 import React from 'react';
 import Button from '../../components/Button';
+import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import Heading from '../../components/Heading';
 import Layout from '../../components/Layout';
@@ -8,7 +9,7 @@ import Parallax from '../../components/Parallax';
 import { LinkEnum } from '../../routes';
 import s from './style.module.scss';
 
-const HomePage = () => {
+const HomePage: React.FC = () => {
   return (
     <div className={s.root}>
       <Header />
@@ -24,6 +25,7 @@ const HomePage = () => {
           <Parallax />
         </div>
       </Layout>
+      <Footer />
     </div>
   );
 };

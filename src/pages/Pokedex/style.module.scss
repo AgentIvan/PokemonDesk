@@ -1,6 +1,7 @@
 @import '../../variables';
 
 .root {
+  position: relative;
   min-height: 100vh;
   background: linear-gradient(180deg, $third 0%, $primary 100%);
 }
@@ -12,4 +13,5 @@
   display: flex;
   flex-wrap: wrap;
   margin-right: -34px;
+  padding-bottom: 2.5rem;
 }

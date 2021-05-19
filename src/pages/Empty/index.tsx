@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import s from './style.module.scss';
 
@@ -11,6 +12,7 @@ const EmptyPage: React.FC<IProps> = ({ title }: IProps) => {
     <div className={s.root}>
       <Header />
       <div>This is Empty Page for {title}!</div>
+      <Footer />
     </div>
   );
 };

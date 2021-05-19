@@ -5,7 +5,7 @@ import { GENERAL_MENU } from '../../routes';
 import { ReactComponent as PokemonLogoSvg } from './assets/Logo.svg';
 import s from './style.module.scss';
 
-const Header = () => {
+const Header: React.FC = () => {
   const path = usePath();
   return (
     <div className={s.root}>
