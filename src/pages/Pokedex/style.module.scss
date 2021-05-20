@@ -8,10 +8,14 @@
 }
 
 .content {
-  flex-grow: 1;
-
   display: flex;
+  flex-grow: 1;
   flex-wrap: wrap;
   margin-right: -34px;
   padding-bottom: 2.5rem;
+}
+
+.message {
+  display: flex;
+  justify-content: center;
 }

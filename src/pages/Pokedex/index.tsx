@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import Heading from '../../components/Heading';
 import Layout from '../../components/Layout';
 import PokemonCard from '../../components/PokemonCard';
 import POKEMONS from '../../pokemons';
@@ -33,12 +34,39 @@ export interface IPokedexPage {
   id?: string | number;
 }
 const PokedexPage: React.FC<IPokedexPage> = ({ id }: IPokedexPage) => {
+  const [pokemons, setPokemons] = useState<RootObject[]>(POKEMONS);
+  const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    fetch('http://zar.hosthot.ru/api/v1/pokemons?offset=10&limit=10')
+      .then((response) => response.json())
+      .then((data) => setPokemons(data.pokemons))
+      .catch(() => setIsError(true))
+      .finally(() => setIsLoading(false));
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className={s.message}>
+        <Heading>Is Loading...</Heading>
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className={s.message}>
+        <Heading>Something wrong!</Heading>
+      </div>
+    );
+  }
+
   return (
     <div className={s.root}>
       <Layout>
         {id && <>id:{id}</>}
         <div className={s.content}>
-          {POKEMONS.map((pokemonData) => (
+          {pokemons?.map((pokemonData) => (
             <PokemonCard
               name={pokemonData.name_clean}
               attack={pokemonData.stats.attack}
