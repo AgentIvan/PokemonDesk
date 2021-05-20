@@ -1,10 +1,11 @@
+import { useRoutes } from 'hookrouter';
 import React from 'react';
-import HomePage from './pages/Home';
-
-// import s from './style.module.scss';
+import NotFoundPage from './pages/NotFound';
+import routes from './routes';
 
 const App: React.FC = () => {
-  return <HomePage />;
+  const routeResult = useRoutes(routes);
+  return routeResult || <NotFoundPage />;
 };
 
 export default App;

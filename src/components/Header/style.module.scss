@@ -5,6 +5,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background: linear-gradient(180deg, $third 0%, $primary 100%);
+  box-shadow: 0 0 0 transparent, 8px 8px 15px rgb(0 0 0 / 18%);
 }
 
 .wrap {
@@ -59,5 +61,12 @@
       width: 100%;
       opacity: 1;
     }
+  }
+}
+
+.activeLink {
+  &::after {
+    width: 100%;
+    opacity: 1;
   }
 }

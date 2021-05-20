@@ -3,6 +3,7 @@
 interface CssExports {
   colorYellow: string;
   fullWidth: string;
+  large: string;
   root: string;
   small: string;
 }
