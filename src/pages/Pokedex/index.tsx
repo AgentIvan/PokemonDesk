@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Heading from '../../components/Heading';
 import Layout from '../../components/Layout';
 import PokemonCard from '../../components/PokemonCard';
+import { url } from '../../config';
 import POKEMONS from '../../pokemons';
 import s from './style.module.scss';
 
@@ -46,13 +47,17 @@ const usePokemons = () => {
   const [data, setData] = useState<IPokemonsResponse>({ pokemons: POKEMONS });
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const params = `?offset=${Math.floor(Math.random() * 87)}&limit=12`;
+  // eslint-disable-next-line no-console
+  console.log('#### url + params', url + params);
   useEffect(() => {
-    fetch(`http://zar.hosthot.ru/api/v1/pokemons?offset=${Math.floor(Math.random() * 87)}&limit=12`)
+    fetch(url + params)
       .then((response) => response.json())
       .then((result) => setData(result))
       .catch(() => setIsError(true))
       .finally(() => setIsLoading(false));
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [url]);
 
   return {
     data,
