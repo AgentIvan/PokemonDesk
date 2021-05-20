@@ -30,50 +30,63 @@ export interface RootObject {
   weight: number;
 }
 
+interface IPokemonsResponse {
+  count?: 11;
+  limit?: 11;
+  offset?: 1;
+  pokemons: RootObject[];
+  total?: number;
+}
+
 export interface IPokedexPage {
   id?: string | number;
 }
-const PokedexPage: React.FC<IPokedexPage> = ({ id }: IPokedexPage) => {
-  const [pokemons, setPokemons] = useState<RootObject[]>(POKEMONS);
+
+const usePokemons = () => {
+  const [data, setData] = useState<IPokemonsResponse>({ pokemons: POKEMONS });
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    fetch('http://zar.hosthot.ru/api/v1/pokemons?offset=10&limit=10')
+    fetch(`http://zar.hosthot.ru/api/v1/pokemons?offset=${Math.floor(Math.random() * 87)}&limit=12`)
       .then((response) => response.json())
-      .then((data) => setPokemons(data.pokemons))
+      .then((result) => setData(result))
       .catch(() => setIsError(true))
       .finally(() => setIsLoading(false));
   }, []);
 
+  return {
+    data,
+    isLoading,
+    isError,
+  };
+};
+
+const PokedexPage: React.FC<IPokedexPage> = ({ id }: IPokedexPage) => {
+  const { data, isLoading, isError } = usePokemons();
+
   if (isLoading) {
-    return (
-      <div className={s.message}>
-        <Heading>Is Loading...</Heading>
-      </div>
-    );
+    return <Heading className={s.message}>Is Loading...</Heading>;
   }
 
   if (isError) {
-    return (
-      <div className={s.message}>
-        <Heading>Something wrong!</Heading>
-      </div>
-    );
+    return <Heading className={s.message}>Something wrong!</Heading>;
   }
 
   return (
     <div className={s.root}>
       <Layout>
-        {id && <>id:{id}</>}
+        <Heading className={s.message} level="h4">
+          {data.total}&nbsp;<b>Pokemons</b> for you to choose your favorite
+        </Heading>
         <div className={s.content}>
-          {pokemons?.map((pokemonData) => (
+          {data?.pokemons.map((pokemon) => (
             <PokemonCard
-              name={pokemonData.name_clean}
-              attack={pokemonData.stats.attack}
-              defense={pokemonData.stats.defense}
-              img={pokemonData.img}
-              types={pokemonData.types}
-              key={pokemonData.name_clean}
+              name={pokemon.name_clean}
+              attack={pokemon.stats.attack}
+              defense={pokemon.stats.defense}
+              img={pokemon.img}
+              types={pokemon.types}
+              key={pokemon.name_clean}
             />
           ))}
         </div>
