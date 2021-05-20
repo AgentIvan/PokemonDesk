@@ -210,7 +210,7 @@ const pokemons = [
     weight: 29,
   },
   {
-    name_clean: 'caterpie',
+    name_clean: 'caterpie1',
     abilities: ['shield-dust', 'run-away'],
     stats: {
       hp: 45,
@@ -222,7 +222,7 @@ const pokemons = [
     },
     types: ['bug'],
     img: null,
-    name: 'caterpie',
+    name: 'caterpie1',
     base_experience: 39,
     height: 3,
     id: 10,

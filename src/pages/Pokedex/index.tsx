@@ -1,7 +1,5 @@
 /* eslint-disable camelcase */
 import React from 'react';
-import Footer from '../../components/Footer';
-import Header from '../../components/Header';
 import Layout from '../../components/Layout';
 import PokemonCard from '../../components/PokemonCard';
 import POKEMONS from '../../pokemons';
@@ -37,7 +35,6 @@ export interface IPokedexPage {
 const PokedexPage: React.FC<IPokedexPage> = ({ id }: IPokedexPage) => {
   return (
     <div className={s.root}>
-      <Header />
       <Layout>
         {id && <>id:{id}</>}
         <div className={s.content}>
@@ -53,7 +50,6 @@ const PokedexPage: React.FC<IPokedexPage> = ({ id }: IPokedexPage) => {
           ))}
         </div>
       </Layout>
-      <Footer />
     </div>
   );
 };

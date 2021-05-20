@@ -3,11 +3,11 @@
 .root {
   min-height: 100vh;
   background: linear-gradient(180deg, $third 0%, $primary 100%);
+  padding-top: 128px;
 }
 
 .contentWrap {
   display: flex;
-  margin-top: 128px;
 }
 
 .contentText > h1 {
