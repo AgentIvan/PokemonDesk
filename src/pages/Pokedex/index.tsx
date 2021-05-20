@@ -48,12 +48,12 @@ const PokedexPage: React.FC<IPokedexPage> = ({ id }: IPokedexPage) => {
         <div className={s.content}>
           {data?.pokemons.map((pokemon) => (
             <PokemonCard
+              key={pokemon.id}
               name={pokemon.name_clean}
               attack={pokemon.stats.attack}
               defense={pokemon.stats.defense}
               img={pokemon.img}
               types={pokemon.types}
-              key={pokemon.name_clean}
             />
           ))}
         </div>

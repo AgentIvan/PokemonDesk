@@ -10,7 +10,7 @@ export interface IStats {
   'special-defense': number;
   speed: number;
 }
-export interface RootObject {
+export interface IPokemon {
   name_clean: string;
   abilities: string[];
   stats: IStats;
@@ -28,7 +28,7 @@ export interface IPokemonsResponse {
   count: number;
   limit: number;
   offset: number;
-  pokemons: RootObject[];
+  pokemons: IPokemon[];
   total?: number;
 }
 
