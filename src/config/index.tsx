@@ -18,7 +18,7 @@ export interface IConfig {
 export const config = {
   client: {
     server: {
-      protocol: 'http',
+      protocol: 'https',
       host: 'zar.hosthot.ru',
     },
     endpoint: {

@@ -4,11 +4,12 @@ import EmptyPage from './pages/Empty';
 import HomePage from './pages/Home';
 import PokedexPage from './pages/Pokedex';
 
-interface IGeneralMenu {
+interface IMenu {
   title: string;
   link: string;
-  component: (id?: string) => JSX.Element;
+  component: (id?: string | number) => JSX.Element;
 }
+
 export enum LinkEnum {
   HOME = '/',
   POKEDEX = '/pokedex',
@@ -17,7 +18,7 @@ export enum LinkEnum {
   POKEMON = '/pokedex/:id',
 }
 
-export const GENERAL_MENU: IGeneralMenu[] = [
+export const GENERAL_MENU: IMenu[] = [
   {
     title: 'Home',
     link: LinkEnum.HOME,
@@ -39,18 +40,20 @@ export const GENERAL_MENU: IGeneralMenu[] = [
     component: () => <EmptyPage title="Documentation" />,
   },
 ];
-export const NOT_LISTED: IGeneralMenu[] = [
+
+export const SECOND_MENU: IMenu[] = [
   {
     title: 'Pokemon',
     link: LinkEnum.POKEMON,
     component: (id) => <PokedexPage id={id} />,
   },
 ];
+
 type IAccMenu = {
   [key: string]: () => JSX.Element;
 };
 
-const routes = [...GENERAL_MENU, ...NOT_LISTED].reduce((acc: IAccMenu, item: IGeneralMenu) => {
+const routes = [...GENERAL_MENU, ...SECOND_MENU].reduce((acc: IAccMenu, item: IMenu) => {
   acc[item.link] = item.component;
   return acc;
 }, {});

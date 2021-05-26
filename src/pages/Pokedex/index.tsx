@@ -17,7 +17,7 @@ const PokedexPage: React.FC<IPokedexPage> = ({ id }: IPokedexPage) => {
   const [query, setQuery] = useState<IQuery>({
     limit: 12,
   });
-  const debouncedValue = useDebounse(searchValue, 1000);
+  const debouncedValue = useDebounse(searchValue, 500);
   const { data, isLoading, isError } = useData<IPokemonsResponse>('getPokemons', query, [debouncedValue]);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,6 +48,7 @@ const PokedexPage: React.FC<IPokedexPage> = ({ id }: IPokedexPage) => {
             )}
           </p>
         </div>
+        {id && `this is id:${id}`}
         {isLoading ? (
           <Heading className={s.message}>Is Loading...</Heading>
         ) : (
