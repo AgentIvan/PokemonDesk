@@ -1,8 +1,6 @@
 import { navigate } from 'hookrouter';
 import React from 'react';
 import Button from '../../components/Button';
-import Footer from '../../components/Footer';
-import Header from '../../components/Header';
 import Heading from '../../components/Heading';
 import Layout from '../../components/Layout';
 import Parallax from '../../components/Parallax';
@@ -12,7 +10,6 @@ import s from './style.module.scss';
 const HomePage: React.FC = () => {
   return (
     <div className={s.root}>
-      <Header />
       <Layout className={s.contentWrap}>
         <div className={s.contentText}>
           <Heading level="h1">
@@ -25,7 +22,6 @@ const HomePage: React.FC = () => {
           <Parallax />
         </div>
       </Layout>
-      <Footer />
     </div>
   );
 };

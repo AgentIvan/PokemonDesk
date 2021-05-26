@@ -1,59 +1,63 @@
-/* eslint-disable camelcase */
-import React from 'react';
-import Footer from '../../components/Footer';
-import Header from '../../components/Header';
+import React, { useEffect, useState } from 'react';
+import Heading from '../../components/Heading';
 import Layout from '../../components/Layout';
 import PokemonCard from '../../components/PokemonCard';
-import POKEMONS from '../../pokemons';
+import req, { IPokemonsResponse } from '../../utils/request';
 import s from './style.module.scss';
 
-interface IStats {
-  hp: number;
-  attack: number;
-  defense: number;
-  'special-attack': number;
-  'special-defense': number;
-  speed: number;
-}
+const usePokemons = () => {
+  const [data, setData] = useState<IPokemonsResponse>();
+  const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
-export interface RootObject {
-  name_clean: string;
-  abilities: string[];
-  stats: IStats;
-  types: string[];
-  img: string | null;
-  name: string;
-  base_experience: number;
-  height: number;
-  id: number;
-  is_default: boolean;
-  order: number;
-  weight: number;
-}
+  useEffect(() => {
+    req('getPokemons')
+      .then((result) => setData(result))
+      .catch(() => setIsError(true))
+      .finally(() => setIsLoading(false));
+  }, []);
+
+  return {
+    data,
+    isLoading,
+    isError,
+  };
+};
 
 export interface IPokedexPage {
   id?: string | number;
 }
+
 const PokedexPage: React.FC<IPokedexPage> = ({ id }: IPokedexPage) => {
+  const { data, isLoading, isError } = usePokemons();
+
+  if (isLoading) {
+    return <Heading className={s.message}>Is Loading...</Heading>;
+  }
+
+  if (isError) {
+    return <Heading className={s.message}>Something wrong!</Heading>;
+  }
+
   return (
     <div className={s.root}>
-      <Header />
       <Layout>
-        {id && <>id:{id}</>}
+        <Heading className={s.message} level="h4">
+          {data?.total}&nbsp;<b>Pokemons</b> for you to choose your favorite
+        </Heading>
         <div className={s.content}>
-          {POKEMONS.map((pokemonData) => (
+          {data?.pokemons.map((pokemon) => (
             <PokemonCard
-              name={pokemonData.name_clean}
-              attack={pokemonData.stats.attack}
-              defense={pokemonData.stats.defense}
-              img={pokemonData.img}
-              types={pokemonData.types}
-              key={pokemonData.name_clean}
+              key={pokemon.id}
+              name={pokemon.name_clean}
+              attack={pokemon.stats.attack}
+              defense={pokemon.stats.defense}
+              img={pokemon.img}
+              types={pokemon.types}
             />
           ))}
         </div>
       </Layout>
-      <Footer />
     </div>
   );
 };

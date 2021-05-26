@@ -4,7 +4,7 @@ import Heading from '../Heading';
 import ImageNotFound from './assets/ImageNotFound.png';
 import s from './style.module.scss';
 
-interface IPokemonCard {
+interface IPokemonCardProps {
   name: string;
   attack: number;
   defense: number;
@@ -12,7 +12,7 @@ interface IPokemonCard {
   img: string | null;
 }
 
-const PokemonCard: React.FC<IPokemonCard> = ({ name, attack, defense, types, img }: IPokemonCard) => {
+const PokemonCard: React.FC<IPokemonCardProps> = ({ name, attack, defense, types, img }: IPokemonCardProps) => {
   return (
     <div className={s.root}>
       <div className={s.infoWrap}>

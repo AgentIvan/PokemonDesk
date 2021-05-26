@@ -13,6 +13,7 @@ const Header: React.FC = () => {
         <div className={s.pockemonLogo}>
           <PokemonLogoSvg />
         </div>
+        {Math.random()}
         <div className={s.menuWrap}>
           {GENERAL_MENU.map(({ link, title }) => (
             <A
@@ -30,4 +31,4 @@ const Header: React.FC = () => {
   );
 };
 
-export default Header;
+export default React.memo(Header);
