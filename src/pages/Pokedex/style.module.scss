@@ -4,7 +4,6 @@
   position: relative;
   min-height: 100vh;
   background: linear-gradient(180deg, $third 0%, $primary 100%);
-  padding: 33px 0;
 }
 
 .content {
@@ -12,10 +11,25 @@
   flex-grow: 1;
   flex-wrap: wrap;
   margin-right: -34px;
-  padding-bottom: 2.5rem;
+  padding-bottom: 63px;
 }
 
 .message {
   display: flex;
   justify-content: center;
+}
+
+.inputStyle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  input {
+    height: 30px;
+    border-radius: 15px;
+    width: 500px;
+    font-size: 16px;
+    padding: 8px;
+  }
 }
