@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import { A, usePath } from 'hookrouter';
 import React from 'react';
-import { GENERAL_MENU } from '../../routes';
+import { GENERAL_MENU, LinkEnum } from '../../routes';
 import { ReactComponent as PokemonLogoSvg } from './assets/Logo.svg';
 import s from './style.module.scss';
 
@@ -10,9 +10,9 @@ const Header: React.FC = () => {
   return (
     <div className={s.root}>
       <div className={s.wrap}>
-        <div className={s.pockemonLogo}>
+        <A className={s.pockemonLogo} href={LinkEnum.HOME}>
           <PokemonLogoSvg />
-        </div>
+        </A>
         {Math.random()}
         <div className={s.menuWrap}>
           {GENERAL_MENU.map(({ link, title }) => (
