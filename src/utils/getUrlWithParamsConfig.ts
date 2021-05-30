@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import config, { EndpointType } from '../config';
 
 interface IApiConfigUri {
@@ -19,7 +19,7 @@ interface IEndpoint {
 
 const getUrlWithParamsConfig = (
   endpoint: EndpointType = 'getPokemons',
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   params: any,
 ): IEndpoint => {
   const { method, uri }: IEndpoint = config.client.endpoint[endpoint];
@@ -45,7 +45,6 @@ const getUrlWithParamsConfig = (
   }, apiConfigUri.pathname);
 
   apiConfigUri.pathname = pathname;
-  apiConfigUri.query = { ...query };
   if (method === 'GET') {
     apiConfigUri.query = {
       ...apiConfigUri.query,

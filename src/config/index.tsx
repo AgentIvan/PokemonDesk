@@ -50,7 +50,7 @@ export const config = {
       deletePokemon: {
         method: 'DELETE',
         uri: {
-          pathname: '/api/v1/pokemon/{id}',
+          pathname: '/api/v1/pokemon/{id}/delete',
         },
       },
     },
