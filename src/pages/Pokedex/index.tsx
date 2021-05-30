@@ -1,3 +1,4 @@
+import { A } from 'hookrouter';
 import React, { useState } from 'react';
 import Heading from '../../components/Heading';
 import Layout from '../../components/Layout';
@@ -54,14 +55,18 @@ const PokedexPage: React.FC<IPokedexPage> = ({ id }: IPokedexPage) => {
         ) : (
           <div className={s.content}>
             {data?.pokemons.map((pokemon) => (
-              <PokemonCard
+              <A
                 key={pokemon.id}
-                name={pokemon.name}
-                attack={pokemon.stats.attack}
-                defense={pokemon.stats.defense}
-                img={pokemon.img}
-                types={pokemon.types}
-              />
+                // role="presentation"
+                href={`/pokedex/${pokemon.id}`}>
+                <PokemonCard
+                  name={pokemon.name}
+                  attack={pokemon.stats.attack}
+                  defense={pokemon.stats.defense}
+                  img={pokemon.img}
+                  types={pokemon.types}
+                />
+              </A>
             ))}
           </div>
         )}

@@ -15,7 +15,7 @@ const getUrlWithParamsConfig = (
   const url = {
     ...config.client.server,
     ...config.client.endpoint[endpoint].uri,
-    query: {},
+    query: { ...query },
   };
   // TODO needs refactoring
   const pathname = Object.keys(query).reduce((acc, val) => {
@@ -29,7 +29,6 @@ const getUrlWithParamsConfig = (
   }, url.pathname);
 
   url.pathname = pathname;
-  url.query = { ...query };
 
   return url;
 };
