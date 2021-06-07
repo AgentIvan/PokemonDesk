@@ -1,22 +1,38 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import config, { EndpointType } from '../config';
 
-interface IUrl {
-  pathname: string;
-  protocol: string;
+interface IApiConfigUri {
   host: string;
+  protocol: string;
+  pathname: string;
+  query?: any;
+}
+
+interface IEndpoint {
+  method: string;
+  uri: {
+    pathname: string;
+    query?: any;
+  };
+  body?: any;
 }
 
 const getUrlWithParamsConfig = (
   endpoint: EndpointType = 'getPokemons',
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  query: any,
-): IUrl => {
-  const url = {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  params: any,
+): IEndpoint => {
+  const { method, uri }: IEndpoint = config.client.endpoint[endpoint];
+  let body = {};
+  const apiConfigUri: IApiConfigUri = {
     ...config.client.server,
-    ...config.client.endpoint[endpoint].uri,
-    query: { ...query },
+    ...uri,
+    query: {
+      ...uri.query,
+    },
   };
+  const query = { ...params };
+
   // TODO needs refactoring
   const pathname = Object.keys(query).reduce((acc, val) => {
     if (acc.indexOf(`{${val}}`) !== -1) {
@@ -26,11 +42,23 @@ const getUrlWithParamsConfig = (
       return result;
     }
     return acc;
-  }, url.pathname);
+  }, apiConfigUri.pathname);
 
-  url.pathname = pathname;
+  apiConfigUri.pathname = pathname;
+  if (method === 'GET') {
+    apiConfigUri.query = {
+      ...apiConfigUri.query,
+      ...query,
+    };
+  } else {
+    body = params;
+  }
 
-  return url;
+  return {
+    method,
+    uri: apiConfigUri,
+    body,
+  };
 };
 
 export default getUrlWithParamsConfig;

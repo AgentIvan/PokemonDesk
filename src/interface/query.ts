@@ -1,6 +1,7 @@
 export interface IQuery {
-  limit: number;
+  limit?: number;
   name?: string;
+  id?: string | number;
 }
 
 export type IQ = Record<string, unknown>;
