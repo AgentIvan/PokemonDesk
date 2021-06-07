@@ -15,7 +15,7 @@ module.exports = {
     path: resolve(__dirname, 'dist'),
     filename: 'main.js',
   },
-  watch: NODE_ENV !== 'production',
+  // watch: NODE_ENV !== 'production',
   watchOptions: {
     ignored: /node_modules/,
     poll: 1000,
@@ -24,7 +24,7 @@ module.exports = {
     rules: [
       {
         test: /\.[tj]sx?$/,
-        exclude: /node_modules/,
+        exclude: [/node_modules/, resolve(__dirname, 'src/server/server.js')],
         use: ['ts-loader'],
       },
       {

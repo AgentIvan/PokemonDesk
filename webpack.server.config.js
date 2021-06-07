@@ -1,4 +1,5 @@
 const path = require('path');
+const nodeExternals = require('webpack-node-externals');
 
 const { resolve } = path;
 
@@ -15,11 +16,11 @@ module.exports = {
     path: resolve(__dirname, 'dist'),
     filename: 'server.js',
   },
+  externals: [nodeExternals()],
   module: {
     rules: [
       {
         test: /\.[tj]sx?$/,
-        exclude: /node_modules/,
         use: ['ts-loader'],
       },
       {
