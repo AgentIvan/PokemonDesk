@@ -38,7 +38,13 @@ const PokedexPage: React.FC<IPokedexPage> = ({ id }: IPokedexPage) => {
       <Layout>
         <div className={s.inputStyle}>
           <Heading level="h3">Please input Pokemon Name</Heading>
-          <input key="editor1" type="text" value={searchValue} onChange={handleSearchChange} />
+          <input
+            id="searchP"
+            type="text"
+            placeholder="Find your pokemon..."
+            value={searchValue}
+            onChange={handleSearchChange}
+          />
           <p>
             {data?.total ? (
               <>
