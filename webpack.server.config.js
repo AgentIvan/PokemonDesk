@@ -11,7 +11,7 @@ module.exports = {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
   },
   mode: NODE_ENV || 'development',
-  entry: resolve(__dirname, 'src/server/server.js'),
+  entry: resolve(__dirname, 'src/server/server.jsx'),
   output: {
     path: resolve(__dirname, 'dist'),
     filename: 'server.js',

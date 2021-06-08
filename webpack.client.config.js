@@ -24,7 +24,7 @@ module.exports = {
     rules: [
       {
         test: /\.[tj]sx?$/,
-        exclude: [/node_modules/, resolve(__dirname, 'src/server/server.js')],
+        exclude: [/node_modules/, resolve(__dirname, 'src/server/server.jsx')],
         use: ['ts-loader'],
       },
       {
