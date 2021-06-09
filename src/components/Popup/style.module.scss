@@ -1,0 +1,28 @@
+.root {
+  margin: 0;
+}
+
+.hide {
+  display: none;
+}
+
+.popupOverlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-color: rgba(33, 33, 33, 0.5);
+  box-sizing: border-box;
+  left: 0;
+  top: 0;
+  z-index: 999;
+  opacity: 1;
+}
+
+.popup {
+  position: relative;
+  z-index: 1000;
+  margin: 20% auto;
+  width: fit-content;
+  height: fit-content;
+}
