@@ -1,5 +1,6 @@
 import { A } from 'hookrouter';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Heading from '../../components/Heading';
 import Layout from '../../components/Layout';
 import PokemonCard from '../../components/PokemonCard';
@@ -7,6 +8,7 @@ import useData from '../../hook/useData';
 import useDebounse from '../../hook/useDebounse';
 import { IPokemonsResponse } from '../../interface/pokemons';
 import IQuery from '../../interface/query';
+import { getTypesAction } from '../../store/pokemons';
 import s from './style.module.scss';
 
 export interface IPokedexPage {
@@ -14,12 +16,17 @@ export interface IPokedexPage {
 }
 
 const PokedexPage: React.FC<IPokedexPage> = ({ id }: IPokedexPage) => {
+  const dispatch = useDispatch();
   const [searchValue, setSearchValue] = useState('');
   const [query, setQuery] = useState<IQuery>({
     limit: 12,
   });
   const debouncedValue = useDebounse(searchValue, 500);
   const { data, isLoading, isError } = useData<IPokemonsResponse>('getPokemons', query, [debouncedValue]);
+
+  useEffect(() => {
+    dispatch(getTypesAction('getPokemonTypes'));
+  }, [dispatch]);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);

@@ -1,4 +1,32 @@
-const initialState = {
+import { Dispatch } from 'react';
+import { EndpointType } from '../config';
+import req from '../utils/request';
+
+export enum PokemonsActionTypes {
+  FETCH_TYPES = 'FETCH_TYPES',
+  FETCH_TYPES_RESOLVE = 'FETCH_TYPES_RESOLVE',
+  FETCH_TYPES_REJECT = 'FETCH_TYPES_REJECT',
+}
+
+interface ITypesAction {
+  type: PokemonsActionTypes;
+  payload?: string[];
+}
+
+export type ITypesRequest = string[];
+
+export type ActionTypes = ITypesAction;
+
+export interface IStateRequest<T> {
+  isLoading: boolean;
+  data?: null | T[];
+  error?: null | T[];
+}
+export interface IPokemonsInitialState {
+  types: IStateRequest<string>;
+}
+
+const initialState: IPokemonsInitialState = {
   types: {
     isLoading: false,
     data: null,
@@ -6,10 +34,9 @@ const initialState = {
   },
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const pokemons = (state = initialState, action: { type: any; payload: any }): typeof initialState => {
+const pokemons = (state = initialState, action: ActionTypes): typeof initialState => {
   switch (action.type) {
-    case 'FETCH_TYPES':
+    case PokemonsActionTypes.FETCH_TYPES:
       return {
         ...state,
         types: {
@@ -18,7 +45,7 @@ const pokemons = (state = initialState, action: { type: any; payload: any }): ty
           error: null,
         },
       };
-    case 'FETCH_TYPES_RESOLVE':
+    case PokemonsActionTypes.FETCH_TYPES_RESOLVE:
       return {
         ...state,
         types: {
@@ -27,7 +54,7 @@ const pokemons = (state = initialState, action: { type: any; payload: any }): ty
           error: null,
         },
       };
-    case 'FETCH_TYPES_REJECT':
+    case PokemonsActionTypes.FETCH_TYPES_REJECT:
       return {
         ...state,
         types: {
@@ -40,5 +67,24 @@ const pokemons = (state = initialState, action: { type: any; payload: any }): ty
       return state;
   }
 };
+
+export const getTypesAction = (endpoint: EndpointType) => {
+  return async (dispatch: Dispatch<ActionTypes>): Promise<void> => {
+    dispatch({ type: PokemonsActionTypes.FETCH_TYPES });
+    try {
+      const response = await req<ITypesRequest>(endpoint);
+      dispatch({ type: PokemonsActionTypes.FETCH_TYPES_RESOLVE, payload: response });
+    } catch (error) {
+      dispatch({ type: PokemonsActionTypes.FETCH_TYPES_REJECT, payload: error });
+    }
+  };
+};
+
+export interface IInitialState {
+  pokemons: IPokemonsInitialState;
+}
+
+export const getPokemonsTypes = (state: IInitialState): string[] | null | undefined => state.pokemons.types.data;
+export const getPokemonsTypesLoading = (state: IInitialState): boolean => state.pokemons.types.isLoading;
 
 export default pokemons;
